@@ -35,3 +35,12 @@ input {
   border-color: grey;
 }
 
+.sent-gif {
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+}
+
+.time {
+  align-self: flex-end;
+}

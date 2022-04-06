@@ -51,10 +51,7 @@ function App() {
   const [modalGif, setModalGif] = useState();
 
   const time = new Date();
-
   const formattedTime = time.toLocaleTimeString();
-
-  // console.log(formattedTime);
 
   return (
     <>
@@ -68,19 +65,15 @@ function App() {
       />
       {modalGif && (
         <div
-          style={{
-
-            // position: "fixed",
-            // top: 20,
-
-          }}
           onClick={(e) => {
             e.preventDefault();
             setModalGif(undefined);
           }}
         >
-          <Gif gif={modalGif} width={200} />
-          <p>{formattedTime}</p>
+          <div className='sent-gif'>
+            <Gif gif={modalGif} width={200} />
+            <p className='time'>{formattedTime}</p>
+          </div>
           <input
             placeholder='Напишите сообщение...'
           />
