@@ -3,6 +3,7 @@ import { Gif, Grid } from "@giphy/react-components"
 import React, { useState } from "react";
 import { render } from "react-dom";
 import useDebounce from "react-use/lib/useDebounce";
+import ResizeObserver from "react-resize-observer";
 import './App.css';
 
 const GIPHY_API = "yKtUX7bMFtaAKgeNEy330Ux3nDKZprUN";
@@ -15,6 +16,7 @@ const giphyFetch = new GiphyFetch(GIPHY_API)
 function GridSearch({ onGifClick }) {
   const [debouncedInput, setDebouncedInput] = useState("");
   const [term, setTerm] = useState("");
+  const [width, setWidth] = useState(window.innerWidth);
 
   useDebounce(() => setTerm(debouncedInput), SEARCH_DEBOUNCE, [debouncedInput]);
   let fetchGifs;
@@ -38,6 +40,11 @@ function GridSearch({ onGifClick }) {
           gutter={6}
         />
       )}
+      <ResizeObserver
+        onResize={({ width }) => {
+          setWidth(width);
+        }}
+      />
       <input
         placeholder="/gif"
         onChange={({ target: { value } }) => setDebouncedInput(value)}
