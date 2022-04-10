@@ -22,7 +22,7 @@ function GridSearch({ onGifClick }) {
   let fetchGifs;
   if (debouncedInput.includes("/gif", 0)) {
     fetchGifs = async (offset) =>
-      giphyFetch.search(term.replace('/gif', ''), { offset: 0, limit: 6 });
+      giphyFetch.search(term.replace('/gif', ''), { offset, limit: 6 });
   }
 
   const NoResults = <div className="no-results">No Results for {term}</div>;
@@ -81,9 +81,10 @@ function App() {
             <Gif gif={modalGif} width={200} />
             <p className='time'>{formattedTime}</p>
           </div>
-          <input
+          <GridSearch input placeholder="Ha" />
+          {/* <input
             placeholder='Напишите сообщение...'
-          />
+          /> */}
         </div>
       )}
     </>
